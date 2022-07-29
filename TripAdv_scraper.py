@@ -3,33 +3,25 @@ import csv
 from selenium import webdriver
 import time
 
-# default path to file to store data
+# path to file to store data
 path_to_file = "D:/Kuliah/S2/Thesis/scrapemine/Scraping-TripAdvisor-with-Python-2020-master/hasil/revmcd12ags.csv"
 
-# default number of scraped pages
+# number of scraped pages
 num_page = 10
 
 # default tripadvisor website of restaurant
 url = "https://www.tripadvisor.co.id/Restaurant_Review-g297715-d5020146-Reviews-McDonald_s-Surabaya_East_Java_Java.html"
 
-# if you pass the inputs in the command line
-if (len(sys.argv) == 4):
-    path_to_file = sys.argv[1]
-    num_page = int(sys.argv[2])
-    url = sys.argv[3]
-
 # Import the webdriver
 driver = webdriver.Chrome('chromedriver.exe')
 driver.get(url)
 
-# Open the file to save the review
+# Save the review
 csvFile = open(path_to_file, 'a', encoding="utf-8")
 csvWriter = csv.writer(csvFile)
 
-# change the value inside the range to save more or less reviews
 for i in range(0, num_page):
     
-    # expand the review 
     time.sleep(2)
     driver.find_element_by_xpath("//span[@class='taLnk ulBlueLinks']").click()
 
